@@ -17,6 +17,8 @@ class Bowling:
 
         if self.is_strike:
             balls_to_score, balls_in_frame = 3, 1
+        elif self.frame_too_large:
+            raise Exception
         elif self.is_spare:
             balls_to_score, balls_in_frame = 3, 2
         else:
@@ -31,6 +33,10 @@ class Bowling:
         score_for_frame = self.score_next(balls_to_score)
         remaining_bowls = self.bowls[balls_in_frame:]
         return score_for_frame, remaining_bowls
+
+    @property
+    def frame_too_large(self):
+        return len(self.bowls) >= 2 and self.score_next(2) > 10
 
     @property
     def is_spare(self):

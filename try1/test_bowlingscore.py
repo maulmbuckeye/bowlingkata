@@ -39,6 +39,13 @@ class MyTestCase(unittest.TestCase):
         bowls = 10 * ([9, 1])
         self.assertEqual(frames, score(*bowls))
 
+    def test_bad_frame(self):
+        with self.assertRaises(Exception):
+            score(4, 7)
+
+    def test_defect(self):
+        self.assertEqual([17, 7, 15, 'open'], score(10, 2,5,7,3,5))
+
 
 if __name__ == '__main__':
     unittest.main()
